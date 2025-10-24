@@ -27,13 +27,22 @@ namespace Form_Test
 
                     test_Button.Size = new Size(50, 50);
 
-                    test_Button.Text = "あいうえお";
+                    test_Button.Text = "";
+
+                    test_Button.Click += button1_Click;
+
+
 
                     Controls.Add(test_Button);
 
                 }
             }
 
+        }
+
+        private void hogehogeCick(object sender, EventArgs e)
+        {
+            MessageBox.Show("クリックされてしまいました");
         }
 
         private void button1_Click(object sender, EventArgs e)
