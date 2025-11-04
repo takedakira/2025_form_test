@@ -22,6 +22,8 @@ namespace Form_Test
 
         private Test_Button[,] _buttonArray;
 
+
+
         public Form1()
         {
             InitializeComponent();
@@ -33,21 +35,28 @@ namespace Form_Test
                 for (int j = 0; j < 3; j++)
                 {
                     //インスタンスの生成
-                    Test_Button test_Button 
-                        = new Test_Button(new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j)
-                        , new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),"a");
+                    Test_Button test_Button
+                        = new Test_Button(this,
+                            new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j)
+                        , new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "a");
 
                     //配列にボタンの参照を追加
-                    _buttonArray[j,i] = test_Button;
+                    _buttonArray[j, i] = test_Button;
 
-                  //コントロールにボタンを追加
+                    //コントロールにボタンを追加
                     Controls.Add(test_Button);
 
                 }
+
+               
             }
 
-            _buttonArray[1,0].SetEnable(true);
+        }
+        
 
+        public Test_Button GetTestButton(int x, int y)
+        {
+            return _buttonArray[y,x];
         }
 
         private void hogehogeCick(object sender, EventArgs e)

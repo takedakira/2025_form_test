@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace Form_Test
 {
-    internal class Test_Button : Button
+    public class Test_Button : Button
     {
         private Color _onColor = Color.LightGreen;
         private Color _offColor = Color.DarkGreen;
 
         private bool _enable;
 
-        
+        private Form1 _form1;
 
         public void SetEnable(bool on)
         {
@@ -31,8 +31,11 @@ namespace Form_Test
         }
 
 
-        public Test_Button(Point position, Size size, string text)
+        public Test_Button(Form1 form1, Point position, Size size, string text)
         {
+            //Formの参照を保管
+            _form1 = form1;
+
             // ボタンの位置を設定
             Location = position;
 
@@ -52,8 +55,8 @@ namespace Form_Test
         // 自分で作成することも可能
         private void hogehogeClick(object sender, EventArgs e)
         {
-            SetEnable(!_enable);
+            _form1.GetTestButton(1, 2).SetEnable(true);
         }
-
+        //controle rr で名前変える
     }
 }
