@@ -30,15 +30,17 @@ namespace Form_Test
             _buttonArray = new Test_Button[BOARD_SIZE_Y, BOARD_SIZE_X];
 
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < BOARD_SIZE_X; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < BOARD_SIZE_Y; j++)
                 {
                     //インスタンスの生成
                     Test_Button test_Button
-                        = new Test_Button(this,
-                            new Point(BUTTON_SIZE_X * i, BUTTON_SIZE_Y * j)
-                        , new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y), "a");
+                        = new Test_Button(
+                            this,
+                            i, j,
+                            new Size(BUTTON_SIZE_X, BUTTON_SIZE_Y),
+                            "a");
 
                     //配列にボタンの参照を追加
                     _buttonArray[j, i] = test_Button;
@@ -48,15 +50,21 @@ namespace Form_Test
 
                 }
 
-               
+
             }
 
         }
-        
 
-        public Test_Button GetTestButton(int x, int y)
+
+        public Test_Button GetTest_Button(int x, int y)
         {
-            return _buttonArray[y,x];
+            //配列外参照配列
+            if (x < 0 || x >= BOARD_SIZE_X) return null;
+            if (y < 0 || y >= BOARD_SIZE_Y) return null;
+
+
+
+            return _buttonArray[y, x];
         }
 
         private void hogehogeCick(object sender, EventArgs e)

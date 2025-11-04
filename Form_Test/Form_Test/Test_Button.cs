@@ -17,6 +17,12 @@ namespace Form_Test
 
         private Form1 _form1;
 
+        private int _x;
+
+        private int _y;
+
+
+
         public void SetEnable(bool on)
         {
             _enable = on;
@@ -30,14 +36,25 @@ namespace Form_Test
             }
         }
 
+        public void Toggle()
+        {
+            SetEnable(!_enable);
+        }
 
-        public Test_Button(Form1 form1, Point position, Size size, string text)
+
+        public Test_Button(Form1 form1,int x,int y,  Size size, string text)
         {
             //Formの参照を保管
             _form1 = form1;
 
+            //
+            _x = x;
+
+            //
+            _y = y;
+
             // ボタンの位置を設定
-            Location = position;
+            Location = new Point(x * size.Width, y * size.Height);
 
             // ボタンの大きさを設定
             Size = size;
@@ -55,8 +72,39 @@ namespace Form_Test
         // 自分で作成することも可能
         private void hogehogeClick(object sender, EventArgs e)
         {
-            _form1.GetTestButton(1, 2).SetEnable(true);
+            //楽な書き方
+            // _form1.GetTest_Button(_x, _y)?.Toggle();
+            // _form1.GetTest_Button(_x + 1, _y)?.Toggle();
+            // _form1.GetTest_Button(_x - 1, _y)?.Toggle();
+            // _form1.GetTest_Button(_x, _y + 1)?.Toggle();
+            // _form1.GetTest_Button(_x, _y - 1)?.Toggle();
+
+            //かっこいい書き方
+            for (int i = 0; i < _toggleDate.Length; i++)
+            {
+                var date = _toggleDate[i];
+                var button = _form1.GetTest_Button(_x + date[0], _y + date[1]);
+
+                if (button != null)
+                {
+                    button.Toggle();
+                }
+            }
+
+
+
         }
         //controle rr で名前変える
+
+        private int[][] _toggleDate =
+        {
+            new int[]{0 ,0 },
+            new int[]{1,0 },
+            new int[]{-1 ,0 },
+            new int[]{0 ,1 },
+            new int[]{0 ,-1 },
+        };
+
+
     }
 }
