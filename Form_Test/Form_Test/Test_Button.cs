@@ -90,9 +90,6 @@ namespace Form_Test
                     button.Toggle();
                 }
             }
-
-
-
         }
         //controle rr で名前変える
 
@@ -105,6 +102,6 @@ namespace Form_Test
             new int[]{0 ,-1 },
         };
 
-
+        if
     }
 }
